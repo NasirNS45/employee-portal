@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="text-align: center; margin-bottom: 50px; margin-top: 50px;">
+        <p>Are you sure you want to remove {{ object.product_name }} from cart</p>
+        <form method="post">
+            {% csrf_token %}
+            <a class="btn btn-primary" href="{% url 'cart-items' %}"> Cancel</a>
+            <button class="btn btn-danger">Yes, Remove it</button>
+        </form>
+    </div>
+{% endblock %}

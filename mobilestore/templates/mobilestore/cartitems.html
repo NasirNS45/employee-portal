@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% if items %}
+        <div style="margin-left: 30%; margin-bottom: 50px; margin-top: 30px;">
+        <h2 style="margin-bottom: 20px;">Your Cart items</h2>
+        {% with totail_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        My Shopping Order:
+                        <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
+                            {{ totail_items }} item {{ totail_items|pluralize }}, Kshs. {{ cart.get_total_price }}
+                        </a>
+                        {% else %}
+                        Your cart is empty.
+                    {% endif %}
+                {% endwith %}
+            <table>
+                <tr>
+                    <th scope="col">
+                        <strong>Picture</strong>
+                    </th>
+                    <th scope="col">
+                        <strong>Product</strong>&nbsp;&nbsp;
+                    </th>
+                    <th scope="col">
+                        <strong>Price</strong>
+                    </th>
+                    <th scope="col">
+                    </th>
+                </tr>
+                {% for item in cart %}
+                    {% with product=item.product  %}
+                <tr scope="row">
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/product-cameras.jpg' %} {% endif %}" width="100" height="100">
+                        </a>
+                    </td>
+                    <td style="margin-top: auto; margin-left: auto; margin-right: auto;">
+                        {{ product.name }} &nbsp;
+                    </td>
+                    <td>
+                        ${{ product.price }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'remove-from-cart' product.id %}"> Remove from cart </a>
+                    </td>
+                </tr>
+                    {% endwith %}
+        {% endfor %}
+            </table>
+            <a class="btn btn-primary" href="{% url 'products' %}"> Add item to Cart </a>
+            <p style="float: right;"> <strong>Total Price $ {{ amount }}</strong></p><br><br>
+            <a href="{% url 'checkout-info' %}" class="btn btn-primary" style="margin-bottom: 20px; float: right;">Checkout</a>
+        {% else %}
+        <h1>
+            <a class="btn btn-primary" href="{% url 'products' %}"> Add item to Cart </a>
+            No items in your cart
+        </h1>
+        {% endif %}
+        </div>
+{% endblock %}

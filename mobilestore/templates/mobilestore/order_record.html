@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="margin-bottom: 100px; margin-top: 30px;">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th scope="col">
+                    Order Id
+                </th>
+                <th scope="col">
+                    Product
+                </th>
+                <th scope="col">
+                    Price
+                </th>
+                <th scope="col">
+                    Quantity
+                </th>
+            </tr>
+            {% for order in orders %}
+                <tr scope="row">
+                    <td>
+                        {{ order.id }}
+                    </td>
+                    <td>
+                        {{ order.product_name }}
+                    </td>
+                    <td>
+                        {{ order.product_price }}
+                    </td>
+                    <td>
+                        {{ order.quantity }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div style=" margin-bottom: 50px; float: right;">
+            <p>
+                <strong>Total Items:</strong> {{ total_items }}
+            </p>
+            <p>
+                <strong>Total Price:</strong> $ {{ total_price }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

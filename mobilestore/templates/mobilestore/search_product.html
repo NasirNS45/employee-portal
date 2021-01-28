@@ -1,0 +1,23 @@
+{% if products %}
+    <div class="item-row">
+        <!-- BEGIN item -->
+        {% for product in products %}
+            <div class="item item-thumbnail">
+                <a href="{% url 'product-detail' product.id %}" class="item-image">
+                    <img src="{{ product.image.url }}" alt=""/>
+                    <div class="discount">{{ product.discount }}% OFF</div>
+                </a>
+                <div class="item-info">
+                    <h4 class="item-title">
+                        <a href="{% url 'product-detail' product.id %}">{{ product.name }}<br/></a>
+                    </h4>
+                    <p class="item-desc">{{ product.specs }}</p>
+                    <div class="item-price">${{ product.current_price }}</div>
+                    <div class="item-discount-price">${{ product.old_price }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h1>No Products available right now</h1>
+{% endif %}
