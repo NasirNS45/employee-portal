@@ -12,12 +12,12 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['name', 'email', 'cell_number', 'profile_picture', 'password1', 'password2']
+        fields = ['name', 'email', 'cell_number', 'password1', 'password2']
         widgets = {
             'name': forms.TextInput(),
             'email': forms.EmailInput(),
             'cell_number': forms.NumberInput(),
-            'profile_picture': forms.FileInput(),
+            # 'profile_picture': forms.FileInput(),
             'password1': forms.PasswordInput(),
             'password2': forms.PasswordInput()
         }
@@ -41,7 +41,7 @@ class ShippingAddressForm(forms.ModelForm):
 class UserAccountUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['email', 'cell_number', 'profile_picture']
+        fields = ['email', 'cell_number']
         widgets = {
             'email': forms.EmailInput(),
             'password': forms.PasswordInput()

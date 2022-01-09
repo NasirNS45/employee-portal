@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from django_fields import DefaultStaticImageField
+# from django_fields import DefaultStaticImageField
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 
 
@@ -8,8 +8,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=30)
     email = models.EmailField(max_length=40, unique=True)
     cell_number = models.IntegerField(default=None, null=True)
-    profile_picture = DefaultStaticImageField(upload_to='user_images', null=True, blank=True,
-                                              default_image_path='img/anonymous-user.png')
+  #  profile_picture = DefaultStaticImageField(upload_to='user_images', null=True, blank=True,
+   #                                           default_image_path='img/anonymous-user.png')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
